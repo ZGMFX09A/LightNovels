@@ -1,28 +1,5 @@
 # -*-coding:utf-8 -*-
 
-# import requests
-# from bs4 import BeautifulSoup
-#
-# link = 'https://www.linovelib.com/novel/1854/number.html'
-# header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) Ap\
-#  pleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36 SLBrowser/7.0.0.2261 SLBChan/8tn: 15007414_dg'}
-# n = 67239
-#
-# for i in range(11):
-#     st_li = []
-#     response = requests.get(link.replace('number', str(n)), headers=header)
-#     response.encoding = 'gb2312'
-#     html = response.text
-#     print(html)
-#     bs = BeautifulSoup(html, 'html.parser')
-#     st_li.append(bs.find_all('h1')[0].text)
-#     for a in bs.find_all('p'):
-#         st_li.append(a.text)
-#     # print(st_li)
-#     break
-#     n += 1
-
-
 from selenium import webdriver
 from selenium.webdriver.common import by
 from bs4 import BeautifulSoup
@@ -73,7 +50,7 @@ def get_page():
     for s in p_li:
         st_li.append(str(s))
     if '（2/2）' in str(title) or '（3/3）' in str(title) or '（4/4）' in str(title):
-        with open(f'd:/girls\' life/{c}.xhtml', 'w', encoding='utf-8') as f:
+        with open(f'{c}.xhtml', 'w', encoding='utf-8') as f:
             biaoti = str(st_li[0].text.replace('&', '&amp;'))
             st_li[0] = str(st_li[0])
             f.write((start.replace('biaoti', biaoti)+'\n\n'.join(st_li)+end).replace('（2/2）', '').replace('（3/3）', ''))
